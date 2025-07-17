@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Donation
+
+# Model Form Field configuration
+form: $/niainteractive/niapays/models/donation/fields.yaml
+
+# Model Class name
+modelClass: NiaInteractive\NiaPays\Models\Donation
+
+# Default redirect location
+defaultRedirect: niainteractive/niapays/donation
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: niainteractive/niapays/donation/update/:id
+    redirectClose: niainteractive/niapays/donation
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: niainteractive/niapays/donation
+    redirectClose: niainteractive/niapays/donation
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

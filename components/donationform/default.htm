@@ -1,0 +1,259 @@
+<style>
+    .niapays-donation-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7fafc;
+    }
+    .niapays-donation-card {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 2rem 2.5rem;
+        max-width: 400px;
+        width: 100%;
+    }
+    .niapays-donation-card h2 {
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .niapays-donation-card label {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+    .niapays-donation-card input[type="text"],
+    .niapays-donation-card input[type="email"],
+    .niapays-donation-card input[type="number"] {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        background: #f9fafb;
+        transition: border 0.2s;
+        box-sizing: border-box;
+    }
+    .niapays-donation-card input:focus {
+        border-color: #3182ce;
+        outline: none;
+    }
+    .niapays-donation-amounts {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+    .niapays-donation-amount-btn {
+        flex: 1 1 40%;
+        background: #f1f5f9;
+        border: 1px solid #cbd5e1;
+        color: #2d3748;
+        border-radius: 0.375rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s, border 0.2s;
+    }
+    .niapays-donation-amount-btn.active,
+    .niapays-donation-amount-btn:hover {
+        background: #2d3748;
+        color: #fff;
+        border-color: #2d3748;
+    }
+    
+    /* Stripe Elements styling */
+    #card-element {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+        background: #f9fafb;
+    }
+    #card-element:focus {
+        border-color: #3182ce;
+    }
+    #card-errors {
+        color: #c53030;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .niapays-donation-card .btn-donate {
+        width: 100%;
+        background: #2d3748;
+        color: #fff;
+        border: none;
+        border-radius: 0.375rem;
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+    .niapays-donation-card .btn-donate:hover:not(:disabled) {
+        background: #4a5568;
+    }
+    .niapays-donation-card .btn-donate:disabled {
+        background: #a0aec0;
+        cursor: not-allowed;
+    }
+    
+    .niapays-donation-card .alert {
+        margin-bottom: 1rem;
+        border-radius: 0.375rem;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+    .niapays-donation-card .alert-success {
+        background: #e6fffa;
+        color: #2c7a7b;
+        border: 1px solid #b2f5ea;
+    }
+    .niapays-donation-card .alert-error {
+        background: #fff5f5;
+        color: #c53030;
+        border: 1px solid #fed7d7;
+    }
+    
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+
+<div class="niapays-donation-container">
+    <div class="niapays-donation-card" id="donationFormContainer">
+        <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem;">Support Our Mission</h2>
+        {% flash %}
+            <div class="alert alert-{{ type }}">{{ message }}</div>
+        {% endflash %}
+        <form id="donationForm">
+            <label for="donorName">Name</label>
+            <input type="text" id="donorName" name="name" required>
+
+            <label for="donorEmail">Email</label>
+            <input type="email" id="donorEmail" name="email" required>
+
+            <label>Choose an amount</label>
+            <div class="niapays-donation-amounts">
+                <button type="button" class="niapays-donation-amount-btn" data-amount="10">$10</button>
+                <button type="button" class="niapays-donation-amount-btn" data-amount="25">$25</button>
+                <button type="button" class="niapays-donation-amount-btn" data-amount="50">$50</button>
+                <button type="button" class="niapays-donation-amount-btn" data-amount="100">$100</button>
+            </div>
+            <label for="custom-amount-input">Or enter a custom amount</label>
+            <input type="number" name="custom_amount" min="1" step="any" id="custom-amount-input" placeholder="Custom amount">
+            <input type="hidden" name="amount" id="amount-input" required>
+
+            <label>Card Details</label>
+            <div id="card-element" style="margin-bottom: 1rem;"></div>
+            <div id="card-errors" class="alert alert-error" style="display:none;"></div>
+
+            <button type="submit" class="btn-donate" id="donateBtn">Donate</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    var form = document.getElementById('donationForm');
+    var donateBtn = document.getElementById('donateBtn');
+    var cardErrors = document.getElementById('card-errors');
+
+    // Amount button and custom input logic
+    document.querySelectorAll('.niapays-donation-amount-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.getElementById('amount-input').value = this.getAttribute('data-amount');
+            var customInput = document.getElementById('custom-amount-input');
+            if (customInput) customInput.value = '';
+            document.querySelectorAll('.niapays-donation-amount-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    var customAmountInput = document.getElementById('custom-amount-input');
+    if (customAmountInput) {
+        customAmountInput.addEventListener('input', function() {
+            document.getElementById('amount-input').value = this.value;
+            document.querySelectorAll('.niapays-donation-amount-btn').forEach(b => b.classList.remove('active'));
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            donateBtn.disabled = true;
+            cardErrors.style.display = 'none';
+            cardErrors.textContent = '';
+
+            var formData = new FormData(form);
+
+            // Step 1: Create Payment Intent
+            $.request('onCreatePaymentIntent', {
+                data: Object.fromEntries(formData),
+                success: function(response) {
+                    if (response.error) {
+                        cardErrors.textContent = response.error;
+                        cardErrors.style.display = 'block';
+                        donateBtn.disabled = false;
+                        return;
+                    }
+                    // Step 2: Confirm Card Payment
+                    stripe.confirmCardPayment(response.clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: formData.get('name'),
+                                email: formData.get('email')
+                            }
+                        }
+                    }).then(function(result) {
+                        if (result.error) {
+                            cardErrors.textContent = result.error.message;
+                            cardErrors.style.display = 'block';
+                            donateBtn.disabled = false;
+                        } else {
+                            if (result.paymentIntent.status === 'succeeded') {
+                                // Step 3: Save donation via AJAX
+                                $.request('onDonate', {
+                                    data: Object.fromEntries(formData),
+                                    success: function() {
+                                        window.location.href = '{{ success_redirect }}';
+                                    }
+                                });
+                            }
+                        }
+                    });
+                },
+                error: function() {
+                    cardErrors.textContent = 'An error occurred. Please try again.';
+                    cardErrors.style.display = 'block';
+                    donateBtn.disabled = false;
+                }
+            });
+        });
+    }
+});
+</script>

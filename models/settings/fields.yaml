@@ -1,0 +1,14 @@
+fields:
+    stripe_secret_key:
+        label: Stripe Secret Key
+        type: text
+        span: auto
+    stripe_publishable_key:
+        label: Stripe Publishable Key
+        type: text
+        span: auto
+    stripe_success_redirect:
+        label: Success Redirect Page
+        type: dropdown
+        span: auto
+        comment: 'Select the page to redirect to after a successful donation.'

@@ -1,0 +1,17 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+    email:
+        label: Email
+    amount:
+        label: Amount
+    created_at:
+        label: Date
+        type: datetime
