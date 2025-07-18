@@ -1,15 +1,17 @@
-v1.0.1:
+1.0.1:
     - First version
     - 0001_01_01_000001_create_donations_table.php
-v1.0.2:
+1.0.2:
     - Added Stripe PHP SDK dependency and Stripe.js CDN loader
-v1.0.3:
+1.0.3:
     - Updated Plugin.php and other improvements
-v1.0.4:
+1.0.4:
     - Added App facade to Plugin.php for compatibility
-v1.0.5:
+1.0.5:
     - Removed App facade and boot method for Stripe.js
     - Now loading Stripe.js CDN in the component instead
-v1.0.6:
+1.0.6:
     - Add name, email, and amount columns to donations table
-
+1.0.7:
+    - Fixed donation fields migration
+    - 0001_01_01_000002_add_donation_fields.php
