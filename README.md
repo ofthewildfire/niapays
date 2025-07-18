@@ -34,6 +34,16 @@ Make sure to include the following in your CMS page or layout to ensure the form
 ```
 If you experience issues, this is often the cause.
 
+You will also need JQuery to load BEFORE the component, or else the PaymentIntent will fail. 
+
+The component you will need to add is below. 
+
+```
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% framework extras %}
+{% component 'donationForm' %}
+```
+
 ## Backend
 
 The backend provides a simple table to view successful donations.
@@ -48,4 +58,4 @@ MIT – free to use.
 
 ## Credits
 
-ofthewildire / fuascailt / Kirsten
+ofthewildire / Kirsten
