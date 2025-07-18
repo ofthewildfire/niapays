@@ -17,7 +17,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('niainteractive_niapays_donations', function(Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('name')->nullable(); // <-- Add this line
+            $table->string('email')->nullable();
+            $table->decimal('amount', 10, 2)->nullable();
             $table->timestamps();
         });
     }

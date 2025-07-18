@@ -10,4 +10,6 @@ v1.0.4:
 v1.0.5:
     - Removed App facade and boot method for Stripe.js
     - Now loading Stripe.js CDN in the component instead
+v1.0.6:
+    - Add name, email, and amount columns to donations table
 
