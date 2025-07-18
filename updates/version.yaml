@@ -18,3 +18,9 @@ v1.0.9:
     - Always register components and navigation regardless of table existence
 v1.1.1: Database migration cleanup; removed redundant second add migration, only initial table creation remains
 v1.1.2: Next version placeholder
+v1.1.3:
+    - Direct table creation in boot() method
+    - Bypassed migration system for reliability
+
+
+    
