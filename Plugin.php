@@ -23,7 +23,10 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        //
+        // Auto-include Stripe JS on pages that use the donation component
+    if (App::runningInBackend() === false) {
+        $this->addJs('https://js.stripe.com/v3/');
+    }
     }
 
     public function registerComponents()
