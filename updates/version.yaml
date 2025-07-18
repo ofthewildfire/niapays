@@ -1,20 +1,20 @@
-1.0.1:
+v1.0.1:
     - First version
     - 0001_01_01_000001_create_donations_table.php
-1.0.2:
+v1.0.2:
     - Added Stripe PHP SDK dependency and Stripe.js CDN loader
-1.0.3:
+v1.0.3:
     - Updated Plugin.php and other improvements
-1.0.4:
+v1.0.4:
     - Added App facade to Plugin.php for compatibility
-1.0.5:
+v1.0.5:
     - Removed App facade and boot method for Stripe.js
     - Now loading Stripe.js CDN in the component instead
-1.0.6:
+v1.0.6:
     - Add name, email, and amount columns to donations table
-1.0.7:
+v1.0.7:
     - Fixed donation fields migration
-1.0.9:
+v1.0.9:
     - Always register components and navigation regardless of table existence
-1.1.1:
-    - Database migration cleanup: removed redundant second add migration, only initial table creation remains
+v1.1.1: Database migration cleanup; removed redundant second add migration, only initial table creation remains
+v1.1.2: Next version placeholder
