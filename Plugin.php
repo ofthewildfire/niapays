@@ -30,16 +30,25 @@ class Plugin extends PluginBase
     // }
     // }
 
+    // public function registerComponents()
+    // {
+    //     // Only register if table exists
+    //     if (Schema::hasTable('niainteractive_niapays_donations')) {
+    //         return [
+    //             \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
+    //         ];
+    //     }
+    //     return [];
+    // }
+
+
     public function registerComponents()
-    {
-        // Only register if table exists
-        if (Schema::hasTable('niainteractive_niapays_donations')) {
-            return [
-                \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
-            ];
-        }
-        return [];
-    }
+{
+    return [
+        \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
+    ];
+}
+
 
     public function registerSettings()
     {
@@ -58,22 +67,36 @@ class Plugin extends PluginBase
         ];
     }
 
+    // public function registerNavigation()
+    // {
+    //     // Only register navigation if table exists
+    //     if (Schema::hasTable('niainteractive_niapays_donations')) {
+    //         return [
+    //             'niapays' => [
+    //                 'label' => 'NiaPays',
+    //                 'url' => Backend::url('niainteractive/niapays/donation'),
+    //                 'icon' => 'icon-leaf',
+    //                 'permissions' => ['niainteractive.niapays.*'],
+    //                 'order' => 500,
+    //             ],
+    //         ];
+    //     }
+    //     return [];
+    // }
+
+
     public function registerNavigation()
-    {
-        // Only register navigation if table exists
-        if (Schema::hasTable('niainteractive_niapays_donations')) {
-            return [
-                'niapays' => [
-                    'label' => 'NiaPays',
-                    'url' => Backend::url('niainteractive/niapays/donation'),
-                    'icon' => 'icon-leaf',
-                    'permissions' => ['niainteractive.niapays.*'],
-                    'order' => 500,
-                ],
-            ];
-        }
-        return [];
-    }
+{
+    return [
+        'niapays' => [
+            'label' => 'NiaPays',
+            'url' => Backend::url('niainteractive/niapays/donation'),
+            'icon' => 'icon-leaf',
+            'permissions' => ['niainteractive.niapays.*'],
+            'order' => 500,
+        ],
+    ];
+}
 
     public function registerPermissions()
     {
