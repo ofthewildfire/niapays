@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= Backend::url('niainteractive/niapays/donation') ?>">Donation</a></li>
+        <li class="breadcrumb-item"><a href="<?= Backend::url('Fuascailtdev/niapays/donation') ?>">Donation</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= e($this->pageTitle) ?></li>
     </ol>
 <?php Block::endPut() ?>
@@ -14,6 +14,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('niainteractive/niapays/donation') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+    <p><a href="<?= Backend::url('Fuascailtdev/niapays/donation') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 
 <?php endif ?>
