@@ -1,4 +1,4 @@
-<?php namespace Fuascailtdev\NiaPays\Controllers;
+<?php namespace NiaInteractive\NiaPays\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -28,7 +28,7 @@ class Donation extends Controller
     /**
      * @var array required permissions
      */
-    public $requiredPermissions = ['Fuascailtdev.niapays.donation'];
+    public $requiredPermissions = ['niainteractive.niapays.donation'];
 
     /**
      * __construct the controller
@@ -37,6 +37,6 @@ class Donation extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Fuascailtdev.NiaPays', 'niapays', 'donation');
+        BackendMenu::setContext('NiaInteractive.NiaPays', 'niapays', 'donation');
     }
 }

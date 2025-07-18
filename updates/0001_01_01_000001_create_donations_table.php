@@ -1,4 +1,4 @@
-<?php namespace Fuascailtdev\NiaPays\Updates;
+<?php namespace NiaInteractive\NiaPays\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('Fuascailtdev_niapays_donations', function(Blueprint $table) {
+        Schema::create('niainteractive_niapays_donations', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
@@ -21,6 +21,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Fuascailtdev_niapays_donations');
+        Schema::dropIfExists('niainteractive_niapays_donations');
     }
 };

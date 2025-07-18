@@ -6,25 +6,25 @@
 name: Donation
 
 # Model Form Field configuration
-form: $/Fuascailtdev/niapays/models/donation/fields.yaml
+form: $/niainteractive/niapays/models/donation/fields.yaml
 
 # Model Class name
-modelClass: Fuascailtdev\NiaPays\Models\Donation
+modelClass: NiaInteractive\NiaPays\Models\Donation
 
 # Default redirect location
-defaultRedirect: Fuascailtdev/niapays/donation
+defaultRedirect: niainteractive/niapays/donation
 
 # Create page
 create:
     title: backend::lang.form.create_title
-    redirect: Fuascailtdev/niapays/donation/update/:id
-    redirectClose: Fuascailtdev/niapays/donation
+    redirect: niainteractive/niapays/donation/update/:id
+    redirectClose: niainteractive/niapays/donation
 
 # Update page
 update:
     title: backend::lang.form.update_title
-    redirect: Fuascailtdev/niapays/donation
-    redirectClose: Fuascailtdev/niapays/donation
+    redirect: niainteractive/niapays/donation
+    redirectClose: niainteractive/niapays/donation
 
 # Preview page
 preview:

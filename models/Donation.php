@@ -1,4 +1,4 @@
-<?php namespace Fuascailtdev\NiaPays\Models;
+<?php namespace NiaInteractive\NiaPays\Models;
 
 use Model;
 
@@ -6,7 +6,7 @@ class Donation extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $table = 'Fuascailtdev_niapays_donations';
+    public $table = 'niainteractive_niapays_donations';
 
     protected $fillable = [
         'name',

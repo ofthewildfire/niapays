@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/Fuascailtdev/niapays/models/donation/columns.yaml
+list: $/niainteractive/niapays/models/donation/columns.yaml
 
 # Model Class name
-modelClass: Fuascailtdev\NiaPays\Models\Donation
+modelClass: NiaInteractive\NiaPays\Models\Donation
 
 # List Title
 title: Manage Donations
 
 # Link URL for each record
-recordUrl: Fuascailtdev/niapays/donation/update/:id
+recordUrl: niainteractive/niapays/donation/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

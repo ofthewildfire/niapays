@@ -1,4 +1,4 @@
-<?php namespace Fuascailtdev\NiaPays;
+<?php namespace NiaInteractive\NiaPays;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -12,7 +12,7 @@ class Plugin extends PluginBase
         return [
             'name' => 'NiaPays',
             'description' => 'Donation management plugin',
-            'author' => 'Fuascailtdev',
+            'author' => 'NiaInteractive',
             'icon' => 'icon-leaf'
         ];
     }
@@ -25,8 +25,8 @@ class Plugin extends PluginBase
     public function boot()
     {
         // Create the donations table if it doesn't exist
-        if (!Schema::hasTable('Fuascailtdev_niapays_donations')) {
-            Schema::create('Fuascailtdev_niapays_donations', function (Blueprint $table) {
+        if (!Schema::hasTable('niainteractive_niapays_donations')) {
+            Schema::create('niainteractive_niapays_donations', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
                 $table->string('email')->nullable();
@@ -41,7 +41,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            \Fuascailtdev\NiaPays\Components\DonationForm::class => 'donationForm'
+            \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
         ];
     }
 
@@ -50,9 +50,9 @@ class Plugin extends PluginBase
         return [
             'niapays' => [
                 'label' => 'NiaPays',
-                'url' => Backend::url('Fuascailtdev/niapays/donation'),
+                'url' => Backend::url('niainteractive/niapays/donation'),
                 'icon' => 'icon-leaf',
-                'permissions' => ['Fuascailtdev.niapays.*'],
+                'permissions' => ['niainteractive.niapays.*'],
                 'order' => 500,
             ],
         ];
@@ -66,10 +66,10 @@ class Plugin extends PluginBase
                 'description' => 'Manage Stripe API keys for donations.',
                 'category'    => 'NiaPays',
                 'icon'        => 'icon-credit-card',
-                'class'       => 'Fuascailtdev\NiaPays\Models\Settings',
+                'class'       => 'NiaInteractive\NiaPays\Models\Settings',
                 'order'       => 500,
                 'keywords'    => 'stripe donation payment',
-                'permissions' => ['Fuascailtdev.niapays.settings'],
+                'permissions' => ['niainteractive.niapays.settings'],
             ]
         ];
     }
@@ -77,11 +77,11 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'Fuascailtdev.niapays.settings' => [
+            'niainteractive.niapays.settings' => [
                 'tab' => 'NiaPays',
                 'label' => 'Manage NiaPays Settings'
             ],
-            'Fuascailtdev.niapays.*' => [
+            'niainteractive.niapays.*' => [
                 'tab' => 'NiaPays',
                 'label' => 'Access NiaPays'
             ],
