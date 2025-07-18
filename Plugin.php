@@ -1,9 +1,9 @@
 <?php namespace NiaInteractive\NiaPays;
 
-// use App;
 use Backend;
 use System\Classes\PluginBase;
 use Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 class Plugin extends PluginBase
 {
@@ -22,37 +22,44 @@ class Plugin extends PluginBase
         //
     }
 
-    // public function boot()
-    // {
-    //     // Auto-include Stripe JS on pages that use the donation component because otherwise for client use this gets real messy.
-    // if (App::runningInBackend() === false) {
-    //     $this->addJs('https://js.stripe.com/v3/');
-    // }
-    // }
-
-    // public function registerComponents()
-    // {
-    //     // Only register if table exists
-    //     if (Schema::hasTable('niainteractive_niapays_donations')) {
-    //         return [
-    //             \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
-    //         ];
-    //     }
-    //     return [];
-    // }
-
+    public function boot()
+    {
+        // Create the donations table if it doesn't exist
+        if (!Schema::hasTable('niainteractive_niapays_donations')) {
+            Schema::create('niainteractive_niapays_donations', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->nullable();
+                $table->string('email')->nullable();
+                $table->decimal('amount', 10, 2)->nullable();
+                $table->string('stripe_payment_intent_id')->nullable();
+                $table->string('status')->default('pending');
+                $table->timestamps();
+            });
+        }
+    }
 
     public function registerComponents()
-{
-    return [
-        \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
-    ];
-}
+    {
+        return [
+            \NiaInteractive\NiaPays\Components\DonationForm::class => 'donationForm'
+        ];
+    }
 
+    public function registerNavigation()
+    {
+        return [
+            'niapays' => [
+                'label' => 'NiaPays',
+                'url' => Backend::url('niainteractive/niapays/donation'),
+                'icon' => 'icon-leaf',
+                'permissions' => ['niainteractive.niapays.*'],
+                'order' => 500,
+            ],
+        ];
+    }
 
     public function registerSettings()
     {
-        // Settings are safe to register immediately - they use system_settings table
         return [
             'niapayssettings' => [
                 'label'       => 'NiaPays Settings',
@@ -66,37 +73,6 @@ class Plugin extends PluginBase
             ]
         ];
     }
-
-    // public function registerNavigation()
-    // {
-    //     // Only register navigation if table exists
-    //     if (Schema::hasTable('niainteractive_niapays_donations')) {
-    //         return [
-    //             'niapays' => [
-    //                 'label' => 'NiaPays',
-    //                 'url' => Backend::url('niainteractive/niapays/donation'),
-    //                 'icon' => 'icon-leaf',
-    //                 'permissions' => ['niainteractive.niapays.*'],
-    //                 'order' => 500,
-    //             ],
-    //         ];
-    //     }
-    //     return [];
-    // }
-
-
-    public function registerNavigation()
-{
-    return [
-        'niapays' => [
-            'label' => 'NiaPays',
-            'url' => Backend::url('niainteractive/niapays/donation'),
-            'icon' => 'icon-leaf',
-            'permissions' => ['niainteractive.niapays.*'],
-            'order' => 500,
-        ],
-    ];
-}
 
     public function registerPermissions()
     {
