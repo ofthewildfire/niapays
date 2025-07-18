@@ -15,5 +15,5 @@
 1.0.7:
     - Fixed donation fields migration
     - 0001_01_01_000002_add_donation_fields.php
-1.0.8:
+1.0.9:
     - Always register components and navigation regardless of table existence
