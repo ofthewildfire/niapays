@@ -1,6 +1,6 @@
 <?php namespace NiaInteractive\NiaPays;
 
-use App;
+// use App;
 use Backend;
 use System\Classes\PluginBase;
 use Schema;
@@ -22,13 +22,13 @@ class Plugin extends PluginBase
         //
     }
 
-    public function boot()
-    {
-        // Auto-include Stripe JS on pages that use the donation component because otherwise for client use this gets real messy.
-    if (App::runningInBackend() === false) {
-        $this->addJs('https://js.stripe.com/v3/');
-    }
-    }
+    // public function boot()
+    // {
+    //     // Auto-include Stripe JS on pages that use the donation component because otherwise for client use this gets real messy.
+    // if (App::runningInBackend() === false) {
+    //     $this->addJs('https://js.stripe.com/v3/');
+    // }
+    // }
 
     public function registerComponents()
     {

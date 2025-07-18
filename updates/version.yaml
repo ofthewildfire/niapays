@@ -5,3 +5,9 @@ v1.0.2:
     - Added Stripe PHP SDK dependency and Stripe.js CDN loader
 v1.0.3:
     - Updated Plugin.php and other improvements
+v1.0.4:
+    - Added App facade to Plugin.php for compatibility
+v1.0.5:
+    - Removed App facade and boot method for Stripe.js
+    - Now loading Stripe.js CDN in the component instead
+

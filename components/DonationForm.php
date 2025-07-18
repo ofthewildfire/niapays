@@ -16,6 +16,12 @@ class DonationForm extends ComponentBase
     }
 
 
+public function onRun()
+    {
+        $this->addJs('https://js.stripe.com/v3/');
+    }
+
+
 public function onRender()
 {
     $settings = \NiaInteractive\NiaPays\Models\Settings::instance();
