@@ -1,5 +1,5 @@
 {
-    "name": "Fuascailtdev/niapays-plugin",
+    "name": "fuascailtdev/niapays-plugin",
     "type": "october-plugin",
     "description": "A simple OctoberCMS plugin for accepting donations via Stripe.",
     "keywords": ["october", "octobercms", "plugin", "donation", "stripe"],

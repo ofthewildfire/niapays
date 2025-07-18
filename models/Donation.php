@@ -6,7 +6,7 @@ class Donation extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $table = 'Fuascailtdev_niapays_donations';
+    public $table = 'fuascailtdev_niapays_donations';
 
     protected $fillable = [
         'name',

@@ -25,8 +25,8 @@ class Plugin extends PluginBase
     public function boot()
     {
         // Create the donations table if it doesn't exist
-        if (!Schema::hasTable('Fuascailtdev_niapays_donations')) {
-            Schema::create('Fuascailtdev_niapays_donations', function (Blueprint $table) {
+        if (!Schema::hasTable('fuascailtdev_niapays_donations')) {
+            Schema::create('fuascailtdev_niapays_donations', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
                 $table->string('email')->nullable();
