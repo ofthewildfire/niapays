@@ -1,3 +1,7 @@
 v1.0.1:
     - First version
     - 0001_01_01_000001_create_donations_table.php
+v1.0.2:
+    - Added Stripe PHP SDK dependency and Stripe.js CDN loader
+v1.0.3:
+    - Updated Plugin.php and other improvements

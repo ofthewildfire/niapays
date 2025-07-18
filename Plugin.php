@@ -1,5 +1,6 @@
 <?php namespace NiaInteractive\NiaPays;
 
+use App;
 use Backend;
 use System\Classes\PluginBase;
 use Schema;
