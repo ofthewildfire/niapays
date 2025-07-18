@@ -1,9 +1,9 @@
-<?php namespace NiaInteractive\NiaPays\Components;
+<?php namespace Fuascailtdev\NiaPays\Components;
 use Url;
 
 
 use Cms\Classes\ComponentBase;
-use NiaInteractive\NiaPays\Models\Donation;
+use Fuascailtdev\NiaPays\Models\Donation;
 
 class DonationForm extends ComponentBase
 {
@@ -24,7 +24,7 @@ public function onRun()
 
 public function onRender()
 {
-    $settings = \NiaInteractive\NiaPays\Models\Settings::instance();
+    $settings = \Fuascailtdev\NiaPays\Models\Settings::instance();
     $redirect = $settings->stripe_success_redirect ?: '/thank-you'; // Define $redirect here
     $this->page['success_redirect'] = Url::to($redirect);
     $this->page['stripe_publishable_key'] = $settings->stripe_publishable_key;
@@ -41,7 +41,7 @@ public function onRender()
         }
 
         try {
-            $settings = \NiaInteractive\NiaPays\Models\Settings::instance();
+            $settings = \Fuascailtdev\NiaPays\Models\Settings::instance();
             \Stripe\Stripe::setApiKey($settings->stripe_secret_key);
 
             $paymentIntent = \Stripe\PaymentIntent::create([

@@ -1,4 +1,4 @@
-<?php namespace NiaInteractive\NiaPays\Models;
+<?php namespace Fuascailtdev\NiaPays\Models;
 
 use Model;
 
@@ -7,7 +7,7 @@ class Settings extends Model
     public $implement = ['System.Behaviors.SettingsModel'];
 
     // A unique code for this settings model
-    public $settingsCode = 'niainteractive_niapays_settings';
+    public $settingsCode = 'Fuascailtdev_niapays_settings';
 
     // Reference to field configuration
     public $settingsFields = 'fields.yaml';

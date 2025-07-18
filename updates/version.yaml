@@ -23,6 +23,8 @@ v1.1.3:
     - Bypassed migration system for reliability
 v1.1.4:
     - Placeholder version
+v1.1.5:
+    - Changed namespaces
 
     
 
