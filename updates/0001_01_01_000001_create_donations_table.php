@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('Fuascailtdev_niapays_donations', function(Blueprint $table) {
+        Schema::create('fuascailtdev_niapays_donations', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
@@ -21,6 +21,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Fuascailtdev_niapays_donations');
+        Schema::dropIfExists('fuascailtdev_niapays_donations');
     }
 };
