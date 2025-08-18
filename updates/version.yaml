@@ -27,6 +27,11 @@ v1.1.5:
     - Changed namespaces
 v1.1.6:
     - Changed migration tables check.
+v1.1.7:
+    - Edits to migration table. 
+v1.1.8:
+    - Fix lowercase column list. 
+
     
 
 
