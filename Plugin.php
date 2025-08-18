@@ -25,17 +25,36 @@ class Plugin extends PluginBase
     public function boot()
     {
         // Create the donations table if it doesn't exist
-        if (!Schema::hasTable('fuascailtdev_niapays_donations')) {
-            Schema::create('fuascailtdev_niapays_donations', function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('name')->nullable();
-                $table->string('email')->nullable();
-                $table->decimal('amount', 10, 2)->nullable();
-                $table->string('stripe_payment_intent_id')->nullable();
-                $table->string('status')->default('pending');
-                $table->timestamps();
-            });
-        }
+        // if (!Schema::hasTable('fuascailtdev_niapays_donations')) {
+        //     Schema::create('fuascailtdev_niapays_donations', function (Blueprint $table) {
+        //         $table->increments('id');
+        //         $table->string('name')->nullable();
+        //         $table->string('email')->nullable();
+        //         $table->decimal('amount', 10, 2)->nullable();
+        //         $table->string('stripe_payment_intent_id')->nullable();
+        //         $table->string('status')->default('pending');
+        //         $table->timestamps();
+        //     });
+        // }
+
+
+    $table = 'fuascailtdev_niapays_donations';
+
+    if (Schema::hasTable($table)) {
+        Schema::drop($table);
+    }
+
+    Schema::create($table, function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('name')->nullable();
+        $table->string('email')->nullable();
+        $table->decimal('amount', 10, 2)->nullable();
+        $table->string('stripe_payment_intent_id')->nullable();
+        $table->string('status')->default('pending');
+        $table->timestamps();
+    });
+
+
     }
 
     public function registerComponents()
