@@ -6,7 +6,7 @@
 name: Donation
 
 # Model Form Field configuration
-form: $/Fuascailtdev/niapays/models/donation/fields.yaml
+form: $/fuascailtdev/niapays/models/donation/fields.yaml
 
 # Model Class name
 modelClass: Fuascailtdev\NiaPays\Models\Donation

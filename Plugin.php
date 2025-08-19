@@ -38,21 +38,21 @@ class Plugin extends PluginBase
         // }
 
 
-    $table = 'fuascailtdev_niapays_donations';
+    // $table = 'fuascailtdev_niapays_donations';
 
-    if (Schema::hasTable($table)) {
-        Schema::drop($table);
-    }
+    // if (Schema::hasTable($table)) {
+    //     Schema::drop($table);
+    // }
 
-    Schema::create($table, function (Blueprint $table) {
-        $table->increments('id');
-        $table->string('name')->nullable();
-        $table->string('email')->nullable();
-        $table->decimal('amount', 10, 2)->nullable();
-        $table->string('stripe_payment_intent_id')->nullable();
-        $table->string('status')->default('pending');
-        $table->timestamps();
-    });
+    // Schema::create($table, function (Blueprint $table) {
+    //     $table->increments('id');
+    //     $table->string('name')->nullable();
+    //     $table->string('email')->nullable();
+    //     $table->decimal('amount', 10, 2)->nullable();
+    //     $table->string('stripe_payment_intent_id')->nullable();
+    //     $table->string('status')->default('pending');
+    //     $table->timestamps();
+    // });
 
 
     }
